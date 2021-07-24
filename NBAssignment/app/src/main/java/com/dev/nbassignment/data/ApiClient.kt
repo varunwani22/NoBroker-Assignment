@@ -9,5 +9,5 @@ import retrofit2.Call;
 interface ApiClient {
 
     @GET("b/60fa8fefa917050205ce5470")
-    suspend fun getAllItems(): Call<List<ResponseModel>>
+    suspend fun getAllItems(): ResponseModel
 }

@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_5sdp">
 
-    <RelativeLayout
-        android:id="@+id/rLayout"
+    <LinearLayout
+        android:id="@+id/rL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/_5sdp"
@@ -15,28 +15,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <View
-            android:id="@+id/ivImage"
+            android:id="@+id/ivImg"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:background="@color/gray" />
 
         <View
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvTit"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_15sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_toEndOf="@id/ivImage"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
             android:background="@color/gray"
+            android:foregroundGravity="center_vertical"
             android:textSize="@dimen/_15sdp" />
 
-        <View
-            android:id="@+id/tvDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_12sdp"
-            android:layout_below="@+id/tvTitle"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_toEndOf="@id/ivImage"
-            android:background="@color/gray" />
-    </RelativeLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

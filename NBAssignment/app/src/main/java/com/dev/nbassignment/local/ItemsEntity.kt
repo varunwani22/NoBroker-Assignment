@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "items")
 data class ItemsEntity(
     @ColumnInfo(name = "image") var image: String?,
-    @ColumnInfo(name = "image") var title: String?,
-    @ColumnInfo(name = "image") var subTitle: String?
+    @ColumnInfo(name = "title") var title: String?,
+    @ColumnInfo(name = "subTitle") var subTitle: String?
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
