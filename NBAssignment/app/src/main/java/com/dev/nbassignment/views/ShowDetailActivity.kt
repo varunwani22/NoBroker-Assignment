@@ -17,6 +17,9 @@ class ShowDetailActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * setting data to views
+     */
     private fun settingData() {
         val photo = intent.getStringExtra("image")
         val title = intent.getStringExtra("title")

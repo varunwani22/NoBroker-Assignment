@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
@@ -25,6 +26,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * This Activity makes an Api call and populates the result in a recycler view.
+ **/
+
 class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryTextListener {
     private lateinit var itemViewModel: ItemViewModel
     private val itemsList = mutableListOf<ItemsEntity>()
@@ -34,6 +39,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setRecyclerData()
+        searchList()
 
         val itemsDao by lazy {
             val roomDatabase = ItemsDatabase.getDatabase(this)
@@ -49,16 +55,23 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
 
         if (isNetworkConnected()) {
             observeTheData()
-//            CoroutineScope(Dispatchers.IO).launch {
-//                itemViewModel.insertData()
-//            }
+            CoroutineScope(Dispatchers.IO).launch {
+                itemViewModel.insertData()
+            }
         } else {
             observeTheData()
         }
 
+
     }
 
+    /**
+     * This method is use to observe the live data coming from retrofit and setting that data to recycleView
+     **/
     private fun observeTheData() {
+        shimmerLayout.stopShimmer()
+        shimmerLayout.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
         itemViewModel.getItems().observe(this, Observer {
             itemsList.clear()
             itemsList.addAll(it)
@@ -67,6 +80,9 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
         })
     }
 
+    /**
+     * Setting the recycleView component
+     */
 
     private fun setRecyclerData() {
         itemsAdapter = ItemsAdapter(itemsList, this)
@@ -76,6 +92,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
             adapter = itemsAdapter
         }
     }
+
+    /**
+     * The method is use to check the network status of device
+     */
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun isNetworkConnected(): Boolean {
@@ -95,6 +115,14 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
                 networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 
+    private fun searchList() {
+        searchBox?.isSubmitButtonEnabled = true
+        searchBox?.setOnQueryTextListener(this)
+    }
+
+    /**
+     * passing data to next screen using intent
+     */
     override fun onItemClick(itemsEntity: ItemsEntity, position: Int) {
         var intent = Intent(this, ShowDetailActivity::class.java)
         intent.putExtra("image", itemsEntity.image)
@@ -113,6 +141,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
         }
         return true
     }
+
+    /**
+     *  searching the query in database
+     */
 
     private fun searchInDatabase(query: String) {
         val searchQuery = "%$query%"

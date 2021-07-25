@@ -6,6 +6,9 @@ import com.bumptech.glide.Glide
 import com.dev.nbassignment.local.ItemsEntity
 import kotlinx.android.synthetic.main.item_layout.view.*
 
+/**
+ * ViewHolder class for recyclerview
+ */
 class ItemsViewHolder(private val itemView: View, var onClickListener: ItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
     fun setData(responseModelItem: ItemsEntity) {

@@ -6,6 +6,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "items")
 data class ItemsEntity(
+    /**
+     * Column of tables
+     */
+
     @ColumnInfo(name = "image") var image: String?,
     @ColumnInfo(name = "title") var title: String?,
     @ColumnInfo(name = "subTitle") var subTitle: String?
