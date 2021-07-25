@@ -7,6 +7,9 @@ import com.dev.nbassignment.R
 import com.dev.nbassignment.local.ItemsEntity
 import com.dev.nbassignment.model.ResponseModelItem
 
+/**
+ * Adapter class for recyclerview
+ */
 class ItemsAdapter(private var itemList: List<ItemsEntity>, var onClickListener: ItemClickListener) :
     RecyclerView.Adapter<ItemsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {

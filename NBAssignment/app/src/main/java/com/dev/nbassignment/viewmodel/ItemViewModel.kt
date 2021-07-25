@@ -9,6 +9,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * This is a ViewModel layer in the `MVVM` architecture, where we are notifying the Activity/view about the
+ * response changes via live data
+ */
 class ItemViewModel(private val repository: ItemsRepository) : ViewModel() {
 
     fun insertData() {

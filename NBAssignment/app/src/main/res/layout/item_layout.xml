@@ -2,7 +2,10 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_6sdp"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_3sdp"
+    android:layout_marginBottom="@dimen/_3sdp"
     android:elevation="@dimen/_10sdp">
 
     <LinearLayout
@@ -13,8 +16,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivImage"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp" />
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -22,7 +25,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_8sdp"
-            android:text="dsds"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
     </LinearLayout>

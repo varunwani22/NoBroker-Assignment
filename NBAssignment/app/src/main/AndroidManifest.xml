@@ -12,14 +12,16 @@
         android:roundIcon="@mipmap/logo_no_broker_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NBAssignment">
-        <activity android:name=".views.ShowDetailActivity"></activity>
-        <activity android:name=".views.SplashScreen" />
-        <activity android:name=".views.MainActivity">
+        <activity android:name=".views.ShowDetailActivity" />
+        <activity android:name=".views.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".views.MainActivity">
+
         </activity>
     </application>
 
