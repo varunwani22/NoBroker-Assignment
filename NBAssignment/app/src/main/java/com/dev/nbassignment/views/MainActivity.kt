@@ -69,12 +69,13 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
      * This method is use to observe the live data coming from retrofit and setting that data to recycleView
      **/
     private fun observeTheData() {
-        shimmerLayout.stopShimmer()
-        shimmerLayout.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
+
         itemViewModel.getItems().observe(this, Observer {
             itemsList.clear()
             itemsList.addAll(it)
+            shimmerLayout.stopShimmer()
+            shimmerLayout.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
             itemsAdapter.updateData(itemsList)
 
         })
@@ -155,6 +156,16 @@ class MainActivity : AppCompatActivity(), ItemClickListener, SearchView.OnQueryT
                 itemsAdapter.updateData(itemsList)
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        shimmerLayout.startShimmer()
+    }
+
+    override fun onPause() {
+        shimmerLayout.stopShimmer()
+        super.onPause()
     }
 
 }
